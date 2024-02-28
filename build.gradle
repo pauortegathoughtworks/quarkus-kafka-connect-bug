@@ -1,0 +1,61 @@
+plugins {
+    id 'java'
+    id 'io.quarkus' version "${quarkusVersion}"
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    maven { url 'https://packages.confluent.io/maven/' }
+}
+
+configurations.all {
+    resolutionStrategy {
+        // to avoid NoSuchMethodError CommonClientConfigs.metricsReporters()
+        force 'org.apache.kafka:kafka-clients:3.6.1'
+    }
+}
+
+dependencies {
+    implementation enforcedPlatform("${quarkusGroupId}:${quarkusArtifactId}:${quarkusVersion}")
+    implementation 'io.quarkus:quarkus-arc'
+    implementation 'io.quarkus:quarkus-resteasy-reactive'
+    testImplementation 'io.quarkus:quarkus-junit5'
+    testImplementation 'io.rest-assured:rest-assured'
+    
+    // extra
+    implementation 'org.awaitility:awaitility:4.2.0'
+    implementation("org.apache.kafka:connect-runtime:3.6.1") {
+        constraints {
+            implementation('org.eclipse.jetty:jetty-http:9.4.53.v20231009') {
+                because 'previous versions have a vulnerability'
+            }
+            implementation('org.bitbucket.b_c:jose4j:0.9.4') {
+                because 'previous version has a vulnerability'
+            }
+        }
+    }
+    implementation("io.quarkus:quarkus-rest-client")
+    implementation group: 'io.confluent', name: 'kafka-connect-avro-converter', version: '7.5.0'
+    implementation("javax.ws.rs:javax.ws.rs-api:2.1.1")
+}
+
+group 'org.acme'
+version '1.0.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+test {
+    systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
+}
+compileJava {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-parameters'
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
