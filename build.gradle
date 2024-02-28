@@ -19,7 +19,8 @@ configurations.all {
 dependencies {
     implementation enforcedPlatform("${quarkusGroupId}:${quarkusArtifactId}:${quarkusVersion}")
     implementation 'io.quarkus:quarkus-arc'
-    implementation 'io.quarkus:quarkus-resteasy-reactive'
+//    implementation 'io.quarkus:quarkus-resteasy-reactive'
+    implementation 'io.quarkus:quarkus-resteasy-jackson'
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'
     
@@ -37,7 +38,10 @@ dependencies {
     }
     implementation("io.quarkus:quarkus-rest-client")
     implementation group: 'io.confluent', name: 'kafka-connect-avro-converter', version: '7.5.0'
-    implementation("javax.ws.rs:javax.ws.rs-api:2.1.1")
+    implementation group: 'io.debezium', name: 'debezium-connector-postgres', version: '2.5.0.Final', {
+        exclude group: 'org.postgresql', module: 'postgresql' // we use our own postgresql dependency below (why?)
+    }
+    implementation 'io.quarkus:quarkus-jdbc-postgresql'
 }
 
 group 'org.acme'

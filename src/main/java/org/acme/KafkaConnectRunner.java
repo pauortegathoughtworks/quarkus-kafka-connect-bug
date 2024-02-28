@@ -9,14 +9,14 @@ import io.quarkus.runtime.ShutdownEvent;
 import io.quarkus.runtime.StartupEvent;
 
 // if using Quarkus 2.16.12.Final
-//import javax.enterprise.context.ApplicationScoped;
-//import javax.enterprise.event.Observes;
-//import javax.inject.Inject;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.event.Observes;
+import javax.inject.Inject;
 
 // if using Quarkus 3.6.8
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.enterprise.event.Observes;
-import jakarta.inject.Inject;
+//import jakarta.enterprise.context.ApplicationScoped;
+//import jakarta.enterprise.event.Observes;
+//import jakarta.inject.Inject;
 
 import java.util.*;
 
@@ -149,13 +149,14 @@ public class KafkaConnectRunner {
                     .until(
                             () -> {
                                 try {
-                                    LOGGER.info("Trying to configure CDC");
-                                    kafkaConnectorRestClient.configureKafkaDataCdcConnector(cdcConfig);
+                                    LOGGER.info("This is where we would configure CDC");
+//                                    kafkaConnectorRestClient.configureKafkaDataCdcConnector(cdcConfig);
                                     System.out.println(cdcConfig.size());
                                     LOGGER.info("Kafka Data Connector configured..");
                                     return true;
                                 } catch (Exception e) {
                                     LOGGER.error("Error trying to configure CDC", e);
+                                    LOGGER.info(cdcConfig);
                                     return false;
                                 }
                             });
