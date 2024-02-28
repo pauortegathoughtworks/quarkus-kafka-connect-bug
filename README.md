@@ -1,4 +1,10 @@
-# How to reproduce
+# Minimal reproducible project for our Quakus + Kafka Connect upgrade issue
+
+## Prerequisites
+- Docker
+- direnv
+
+## How to reproduce
 
 1. Clone this repo.
 2. Run `docker-compose up`.
