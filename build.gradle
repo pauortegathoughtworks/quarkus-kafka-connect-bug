@@ -35,12 +35,7 @@ dependencies {
             }
         }
     }
-    implementation("io.quarkus:quarkus-rest-client")
     implementation group: 'io.confluent', name: 'kafka-connect-avro-converter', version: '7.5.0'
-    implementation group: 'io.debezium', name: 'debezium-connector-postgres', version: '2.5.0.Final', {
-        exclude group: 'org.postgresql', module: 'postgresql' // we use our own postgresql dependency below (why?)
-    }
-    implementation 'io.quarkus:quarkus-jdbc-postgresql'
 }
 
 group 'org.acme'

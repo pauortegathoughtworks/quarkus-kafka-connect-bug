@@ -15,10 +15,3 @@ services:
       - KAFKA_LOG_CLEANUP_POLICY= compact
     depends_on:
       - zookeeper
-  postgres:
-    image: bitnami/postgresql:12.16.0
-    ports:
-      - 5432:5432
-    environment:
-      - POSTGRESQL_PASSWORD=postgres
-      - POSTGRESQL_WAL_LEVEL=logical

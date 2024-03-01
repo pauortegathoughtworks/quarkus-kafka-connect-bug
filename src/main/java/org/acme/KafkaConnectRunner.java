@@ -100,7 +100,7 @@ public class KafkaConnectRunner {
             }
         }
 
-        LOGGER.info("Kafka Connect started...");
+        LOGGER.info("======== SUCCESSFULLY STARTED ========");
     }
 
     private void checkAndAddProperties(Map<String, String> propertiesMap, String key) {
