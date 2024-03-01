@@ -19,7 +19,6 @@ configurations.all {
 dependencies {
     implementation enforcedPlatform("${quarkusGroupId}:${quarkusArtifactId}:${quarkusVersion}")
     implementation 'io.quarkus:quarkus-arc'
-//    implementation 'io.quarkus:quarkus-resteasy-reactive'
     implementation 'io.quarkus:quarkus-resteasy-jackson'
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'

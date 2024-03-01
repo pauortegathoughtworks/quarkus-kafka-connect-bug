@@ -21,7 +21,6 @@ If you're running on the `2.16.12.Final` version it will run fine.
 ## How to switch between versions
 
 1. Go to the `gradle.properties` file and assign either `2.16.12.Final` or `3.6.8` as values for the `quarkusPluginVersion` and `quarkusVersion` properties.
-2. Go to the `KafkaConnectorRestClient.java` file and replace all imports from `javax` to `jakarta` or viceversa. 
-3. Go to the `KafkaConnectRunner.java` file and replace all imports from `javax` to `jakarta` or viceversa.
+2. Go to the `KafkaConnectRunner.java` file and replace all imports from `javax` to `jakarta` or viceversa.
 
 Don't forget to run `./gradlew clean build` and `./gradlew quarkusDev` again.
